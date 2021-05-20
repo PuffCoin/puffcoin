@@ -36,7 +36,12 @@ class CDBEnv
 private:
     bool fDetachDB;
     bool fDbEnvInit;
+    bool fMockDb;
     boost::filesystem::path pathEnv;
+    // @todo
+    // Don't change into boost::filesystem::path, as that can result in
+    // shutdown problems/crashes caused by a static initialized internal pointer.
+    // std::string strPath;
 
     void EnvShutdown();
 
@@ -48,6 +53,31 @@ public:
 
     CDBEnv();
     ~CDBEnv();
+    void Reset();
+
+    void MakeMock();
+    bool IsMock() { return fMockDb; }
+
+    /**
+     * Verify that database file strFile is OK. If it is not,
+     * call the callback to try to recover.
+     * This must be called BEFORE strFile is opened.
+     * Returns true if strFile is OK.
+     */
+    enum VerifyResult { VERIFY_OK,
+                        RECOVER_OK,
+                        RECOVER_FAIL };
+    VerifyResult Verify(const std::string& strFile, bool (*recoverFunc)(CDBEnv& dbenv, const std::string& strFile));
+    /**
+     * Salvage data from a file that Verify says is bad.
+     * fAggressive sets the DB_AGGRESSIVE flag (see berkeley DB->verify() method documentation).
+     * Appends binary key/value pairs to vResult, returns true if successful.
+     * NOTE: reads the entire database into memory, so cannot be used
+     * for huge databases.
+     */
+    typedef std::pair<std::vector<unsigned char>, std::vector<unsigned char> > KeyValPair;
+    bool Salvage(const std::string& strFile, bool fAggressive, std::vector<KeyValPair>& vResult);
+
     bool Open(boost::filesystem::path pathEnv_);
     void Close();
     void Flush(bool fShutdown);
