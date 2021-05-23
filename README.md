@@ -39,5 +39,5 @@ brew install autoconf automake libtool boost miniupnpc openssl@1.1 pkg-config pr
 RPC PORT: 55883->8856
 P2P PORT: 55884->8857
 
-Testnet Port: 45883->18856
-Testnet Port: 45884->18857
+Testnet RPC Port: 45883->18856
+Testnet P2P Port: 45884->18857

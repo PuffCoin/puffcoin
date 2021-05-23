@@ -17,9 +17,9 @@
 #include "uint256.h"
 
 extern bool fTestNet;
-static inline unsigned short GetDefaultPort(const bool testnet = fTestNet)
+inline unsigned short GetDefaultPort()
 {
-    return testnet ? 18856 : 8857;
+    return static_cast<unsigned short>(fTestNet ? 18857 : 8857);
 }
 
 
