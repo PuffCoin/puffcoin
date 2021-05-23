@@ -31,6 +31,19 @@ Lovely, they line up and each have a single connection. Now we can make one of t
 ./puffcoind setgenerate true 16
 ```
 
+### Qt4 GUI
+```
+sudo add-apt-repository ppa:rock-core/qt4
+
+sudo apt update
+
+
+
+sudo apt-get install qt4-qmake libqt4-dev build-essential libboost-dev libboost-system-dev \
+    libboost-filesystem-dev libboost-program-options-dev libboost-thread-dev \
+    libssl-dev libdb5.3++-dev
+```
+
 ## Mac OS
 ```
 brew install autoconf automake libtool boost miniupnpc openssl@1.1 pkg-config protobuf qt
