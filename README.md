@@ -5,7 +5,7 @@ Scrypt Hashcash PoW Template
 
 ## Linux
 ```
-sudo apt-get install build-essential libboost-all-dev libcurl4-openssl-dev libdb5.3-dev libdb5.3++-dev git pyqt5-dev-tools libminiupnpc-dev zlib1g-dev
+sudo apt-get install build-essential libboost-all-dev libcurl4-openssl-dev libdb5.3-dev libdb5.3++-dev git pyqt5-dev-tools libminiupnpc-dev zlib1g-dev libssl-dev
 ```
 
 ```
