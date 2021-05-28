@@ -833,8 +833,8 @@ int64 static GetBlockValue(int nHeight, int64 nFees)
     return nSubsidy + nFees;
 }
 //How *should* blocks be found and how often difficulty retargets
-static const int64 nTargetTimespan = 0.5 * 24 * 60 * 60; // PuffCoin: 0.5 days
-static const int64 nTargetSpacing = 120; // PuffCoin: 2 minute blocks
+static const int64 nTargetTimespan = 4 * 60 * 60; // PuffCoin: 4 hour difficulty readjustment
+static const int64 nTargetSpacing = 60; // PuffCoin: 1 minute block targets
 static const int64 nInterval = nTargetTimespan / nTargetSpacing;
 
 // Thanks: Balthazar for suggesting the following fix
@@ -881,7 +881,7 @@ unsigned int static GetNextWorkRequired(const CBlockIndex* pindexLast, const CBl
         // Special difficulty rule for testnet:
         if (fTestNet)
         {
-            // If the new block's timestamp is more than 2* 10 minutes
+            // If the new block's timestamp is more than 2* 1 minutes
             // then allow mining of a min-difficulty block.
             if (pblock->nTime > pindexLast->nTime + nTargetSpacing*2)
                 return nProofOfWorkLimit;

@@ -32,13 +32,13 @@ class CNode;
 // activated: after block 15000 for all following diff retargeting events
 #define COINFIX1_BLOCK  (15000)
 
-// for now, we leave the block size at 1 MB, meaning we support roughly 2400 transactions
-// per block, which means about 160 tps
-static const unsigned int MAX_BLOCK_SIZE = 1000000;
+// for now, we leave the block size at 100 MB, meaning we support roughly 240000 transactions
+// per block, which means about 16000 tps
+static const unsigned int MAX_BLOCK_SIZE = 100000000;
 static const unsigned int MAX_BLOCK_SIZE_GEN = MAX_BLOCK_SIZE/2;
 static const unsigned int MAX_BLOCK_SIGOPS = MAX_BLOCK_SIZE/50;
 static const unsigned int MAX_ORPHAN_TRANSACTIONS = MAX_BLOCK_SIZE/100;
-static const int64 MIN_TX_FEE = 10000000;
+static const int64 MIN_TX_FEE = 1;// odl:10000000;
 static const int64 MIN_RELAY_TX_FEE = MIN_TX_FEE;
 static const int64 MAX_MONEY = 10000000000 * COIN; // maximum number of coins, maximum of 100B coins, max transaction 10,000,000,000
 inline bool MoneyRange(int64 nValue) { return (nValue >= 0 && nValue <= MAX_MONEY); }
